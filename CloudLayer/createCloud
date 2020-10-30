@@ -1,0 +1,11 @@
+#!/bin/bash
+
+terraform init
+
+terraform plan
+
+terraform apply
+
+aws --region us-east-1 elasticbeanstalk update-environment --environment-name Sdcc-environment --version-label cloud
+
+python3 createfile.py

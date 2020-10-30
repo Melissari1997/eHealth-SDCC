@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Soccorso Emergenza Ospedali Roma</title>
+    <meta http-equiv="refresh" content="30" >
+</head>
+<body>
+<div align="left">
+La situazione è aggiornata alle ore {{ora}}
+    <br>del giorno {{giorno}}
+</div>
+    <table border="2" bordercolor="black" align="center" >
+    <tr><td>Nome Ospedale</td><td>Id Ospedale</td><td>Numero ambulanze</td></tr>
+    {% for current_hospital in hospital %}
+        <tr><td>{{current_hospital['Nome']}}</td><td>{{current_hospital['Id']}}</td><td>{{current_hospital['NumA']}}</td></tr>
+    {% endfor %}
+    </table>
+    <br>
+    <br>
+    <table border="2" bordercolor="black" align="center" >
+    <tr><td>Nome</td><td>Cognome</td><td>Codice Fiscale</td><td>Ospedale</td><td>Tempo in Minuti</td><td>Richiesta inviata alle ore</td>
+    <td>Ora Arrivo Ospedale</td></tr>
+    {% for current_patient in patient %}
+        <tr><td>{{current_patient['Name']}}</td><td>{{current_patient['Surname']}}</td>
+            <td>{{current_patient['CF']}}</td>
+            <td>{{current_patient['Hospital']}}</td><td>{{current_patient['Time']}}</td>
+            <td>{{current_patient['TimeSend']}}</td><td>{{current_patient['TimeArrive']}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+</body>
+</html>

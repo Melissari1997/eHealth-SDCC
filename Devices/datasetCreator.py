@@ -1,7 +1,9 @@
 from codicefiscale import codicefiscale
 from random import randint
 import json
-
+"""
+Modulo per creare i data set per i simulazioni
+"""
 
 def getSensorList():
     with open('settings/sensorTypes.json') as configFile:

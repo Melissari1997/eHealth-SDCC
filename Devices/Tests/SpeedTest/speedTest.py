@@ -7,16 +7,22 @@ from Devices.mqttClient import MqttClient
 
 mqttConnectorsDict = {}
 chosenResultsFile = None
+"""
+Simulazione per ottenere dati sui tempi medi di risposta
+"""
+
+"""
+Callback per i messaggi ricevuti
+"""
 
 
 def on_message(mqttClient, userdata, message):
     message = (message.payload.decode("utf-8"))
-    #print("message received from sensor", json.loads(repr(ast.literal_eval(strmessage))))
+    # print("message received from sensor", json.loads(repr(ast.literal_eval(strmessage))))
 
     chosenResultsFile.write(message)
     chosenResultsFile.write("\n")
     chosenResultsFile.flush()
-
 
 
 def getSensorInterval(sensorsList, sensorType):
@@ -61,6 +67,10 @@ def computeFiscalCode():
         json.dump(personList, configFile)
         configFile.close()
 
+"""
+In base al file selezionato all'avvio del programma, simula l'invio dei dati per 3 minuti e 
+scrive i risultati sui file nella cartella results
+"""
 
 def startSim(filename):
     print()
@@ -69,12 +79,10 @@ def startSim(filename):
     print("SIMULATION STARTED")
     sensors = getSensorList()
     fogList = getFogList()
-    # computeFiscalCode()
     personList = getPersonList(filename)
     for person in personList:
         connector = MqttClient(person["CodiceFiscale"])
         fogNode = fogList[person["ActualZone"]]
-        # connector._port = fogNode["port"]
         connector.connect("localhost", fogNode["port"])
         connector.client.subscribe("/speedTest")
         connector.client.on_message = on_message
@@ -90,47 +98,6 @@ def startSim(filename):
     print("Exit")
     exit(0)
 
-"""
-    i = 0
-    if filename.__contains__("huge"):
-        threadPool = 100
-    else:
-        threadPool = 5
-    persons = []
-    threadList = []
-    for person in personList:
-        i += 1
-        persons.append(person)
-        if i == threadPool:
-            print(persons)
-            for p in persons:
-                for sensor in p["Sensors"]:
-                    interval = getSensorInterval(sensors, sensor["SensorType"])
-                    if interval is not None:
-                        s = {
-                            "name": sensor["SensorType"],
-                            "interval": getSensorInterval(sensors, sensor["SensorType"])
-                        }
-                        thread = SensorThread(s, mqttConnectorsDict, persons)
-                        thread.daemon = True
-                        thread.start()
-                        threadList.append(thread)
-            persons = []
-            i = 0
-    now = time.time()
-    while True:
-        time.sleep(180)
-        late = time.time()
-        difference = late - now
-        if difference > 180:
-            smallResults.close()
-            exit(0)
-
-"""
-"""
-if __name__ == "__main__":
-    startSim("settings/attributes.json")
-"""
 
 if __name__ == "__main__":
     print()
@@ -144,7 +111,7 @@ if __name__ == "__main__":
         simType = input("Please enter 1, 2 or 3: ")
     if simType == "1":
         print("SELECTED SIMULATION TYPE: Small number of people")
-        chosenResultsFile =  open("results/smallResults", "w")
+        chosenResultsFile = open("results/smallResults", "w")
         file = "small.json"
     if simType == "2":
         print("SELECTED SIMULATION TYPE: Medium number of people")

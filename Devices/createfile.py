@@ -1,6 +1,8 @@
 import json
 import os
-
+"""
+Invia gli indirizzi email al cloud, per fare in modo che poi i fog layer possano richiederli
+"""
 file = {
     "email": [
 

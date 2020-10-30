@@ -1,7 +1,9 @@
 import time
 
 import mysql.connector
-
+"""
+Crea il database
+"""
 time.sleep(5)
 def create():
     try:
@@ -38,8 +40,6 @@ def create():
         cursor.execute("SET GLOBAL event_scheduler  = ON")
         cursor.execute("SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO'")
         cursor.execute("SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED")
-        cursor.execute("DROP TABLE IF EXISTS pending ")
-        cursor.execute("DROP TABLE IF EXISTS notified ")
         #  "DELETE FROM pending WHERE TIMESTAMPDIFF(MINUTE,sendDate, NOW()) > 1 ; " \
         cursor.execute(
             "CREATE TABLE IF NOT EXISTS pending (CF VARCHAR(100), patientName VARCHAR(100), patientSurname VARCHAR(100), sensorType VARCHAR(100), gravity VARCHAR(100), sendDate TIMESTAMP , PRIMARY KEY (CF,sendDate,sensorType))")

@@ -4,6 +4,10 @@ import time
 from random import randint
 from threading import Thread
 
+"""
+Thread che genera i dati di ogni sensori di una lista di persone
+"""
+
 
 def getPersonList(filename):
     with open(filename) as configFile:
@@ -30,6 +34,11 @@ def getActualPosition(person):
     return "Position Undefined"
 
 
+"""
+Setta la nuova zona di appartenenza (quindi cambia il fog node di appartenenza)
+"""
+
+
 def setNewPosition(person):
     fogIdList = []
     for fogNode in fogList:
@@ -44,6 +53,7 @@ def setNewPosition(person):
     return (newPos, posCoordinates)
 
 
+# probabilità di cambiare zona
 def getProbability():
     with open("settings/dataCreatorConfig.json") as configFile:
         data = json.load(configFile)
@@ -51,13 +61,23 @@ def getProbability():
         return data
 
 
+"""
+Calcola il nodo fog più vicino
+"""
+
+
 def getNearestFog(lat, long, ignorePort=None):
     candidateFog = fogList.copy()
     if ignorePort is not None:
-        for i in range(0, len(candidateFog )-1):
+        for i in range(0, len(candidateFog) - 1):
             if candidateFog[i]["port"] == ignorePort:
                 candidateFog.pop(i)
     return computeDistance(lat, long, candidateFog)
+
+
+"""
+ritorna il nodo fog più vicino alle coordinate inviate 
+"""
 
 
 def computeDistance(lat, long, candidateFog):
@@ -74,6 +94,8 @@ def computeDistance(lat, long, candidateFog):
 
 
 fogList = getFogList()
+
+
 class SensorThread(Thread):
     name = ""
     interval = 0
@@ -95,12 +117,13 @@ class SensorThread(Thread):
     def changeBroker(self, broker, person):
         self.connectorsList[person["CodiceFiscale"]].disconnect()
         port = broker['port']
-        #self.connectorsList[person["CodiceFiscale"]].setPort(port)
+        # self.connectorsList[person["CodiceFiscale"]].setPort(port)
         try:
             self.connectorsList[person["CodiceFiscale"]].connect("localhost", port)
         except:
-            print("Changed not possibile. Fog node: ", broker , " is not available")
+            print("Changed not possibile. Fog node: ", broker, " is not available")
 
+    #cambia (di poco) le coordinate del paziente
     def setPosition(self):
         while True:
             for person in self.persons:
@@ -134,6 +157,7 @@ class SensorThread(Thread):
                             sensor["ActualPosition"] = position
             time.sleep(self.interval)
 
+    # genera una caduata del paziente
     def setMovementSensor(self):
         while True:
             for person in self.persons:
@@ -155,6 +179,7 @@ class SensorThread(Thread):
                         self.connectorsList[person["CodiceFiscale"]].sendData(data, self.name)
             time.sleep(self.interval)
 
+    #genera i dati del sensore di pressione sanguigna
     def setBloodPressureSensor(self):
         while True:
             for person in self.persons:
@@ -171,6 +196,7 @@ class SensorThread(Thread):
                         self.connectorsList[person["CodiceFiscale"]].sendData(data, self.name)
             time.sleep(self.interval)
 
+    #genera i dati del sensore di ossigenazione sanguigna
     def setBloodOxygenSensor(self):
         while True:
             for person in self.persons:
@@ -186,6 +212,7 @@ class SensorThread(Thread):
                         self.connectorsList[person["CodiceFiscale"]].sendData(data, self.name)
             time.sleep(self.interval)
 
+    #genera i dati del battito cardiaco
     def setHearthBeatSensor(self):
         while True:
             for person in self.persons:

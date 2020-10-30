@@ -1,7 +1,9 @@
 import time
 
 from Devices.mqttClient import MqttClient
-
+"""
+Test per verificare che il sitema di invio email e invio dati al cloud funzioni
+"""
 criticalPacket = {
                 "Name": "Alessio",
                 "Surname": "Verdi",
@@ -43,11 +45,14 @@ if __name__ == "__main__":
     client = MqttClient("MLSPLA97D04H501U")
     client.connect("localhost", 1883)
     send = 0
+    #invio 4 pacchetti critici per far inviare email e ambulanza
     while send < 4:
         client.sendData(criticalPacket, "bloodPressure")
         client.loop()
         time.sleep(2)
         send += 1
+
+    #ne invio altri  per verificare che non venga inviata l'email
     send = 0
     while send < 3:
         client.sendData(criticalPacket, "bloodPressure")
@@ -65,7 +70,8 @@ if __name__ == "__main__":
         time.sleep(2)
         send += 1
     send = 0
-    #manda solo email, ma non cloud
+
+    #manda solo email (perchè di un sensore diverso) , ma non cloud
     while send < 4:
         client.sendData(criticalPacket2, "bloodOxygen")
         client.loop()

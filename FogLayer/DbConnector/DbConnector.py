@@ -55,8 +55,7 @@ def getNotified():
 """
 
 
-
-@DbConnector.route("/updateProcessed", methods=['POST'])
+# aggiorna la tabella contenente i pazienti già notificati, prima di processarne uno nuovo.
 def setProcessed():
     processedPatient = request.json
     CF = processedPatient['CF']
@@ -76,7 +75,7 @@ def setProcessed():
     cursor.close()
     return 'updated'
 
-
+#aggiorna la tabella dei pazienti già notificati.
 @DbConnector.route("/updatePermissions", methods=["GET"])
 def updatePermissions():
     processedPatient = request.json
@@ -111,7 +110,7 @@ def updatePermissions():
     cursor.close()
     return "updated"
 
-
+#ritorna se posso mandare un'email o inviare un'ambulanza per quel paziente
 @DbConnector.route("/getPermissions", methods=["GET"])
 def getPermissions():
     processedPatient = request.json
@@ -156,7 +155,7 @@ def getProcessed():
     cursor.close()
     return result
 
-
+#aggiunge il paziente alla lista di quelli notificati per email
 @DbConnector.route("/addToNotified", methods=["GET"])
 def addToProcessed():
     processedPatient = request.json

@@ -4,13 +4,23 @@ import requests
 from flask import Flask, request
 
 healthChecker = Flask(__name__)
+
+"""
+Servizio che analizza i dati ricevuti e se necessario, invia email o chiede al cloud di inviare un'ambulanza
+"""
+
+
 def readSensorValues():
     with open('sensorValues.json') as configFile:
         data = json.load(configFile)
         configFile.close()
         return data
+
+
 sensorFile = readSensorValues()
 
+
+# inserisce sul db il dato appena ottenuto (se il dato non è normale)
 def writeOnDb(message):
     res = requests.post("http://dbconnector:7000/sendPendingPatient", json=message)
     numberHigh = json.loads(res.content)["numberHigh"]
@@ -18,6 +28,7 @@ def writeOnDb(message):
     return (numberHigh, numberMedium)
 
 
+# invia l'email se non ne ho già inviata una negli ultimi 15 minuti
 def sendEmail(message, priority="medium"):
     notified = requests.get("http://dbconnector:7000/getNotified", json=message)
     jsonData = json.loads(notified.content)
@@ -43,17 +54,17 @@ def sendEmail(message, priority="medium"):
         sendToCloud(message)
 
 
+# chiede al cloud di inviare un'ambulanza
 def sendToCloud(message):
     requests.post("http://cloudconnector:6000/sendData", json=message)
 
 
-
 def receive(jsonData):
-    # jsonData = json.loads(data)]
+    # se il sensore è di movimento, invia email
     if "movement" == jsonData["SensorType"]:
         if jsonData["Value"] == "True":
             emailRequest = [{"CF": jsonData["CF"]}]
-            emailRes = requests.get("http://cloud-service.us-east-1.elasticbeanstalk.com/getemail", json= emailRequest)
+            emailRes = requests.get("http://cloud-service.us-east-1.elasticbeanstalk.com/getemail", json=emailRequest)
             email = json.loads(emailRes.content)["Email"]
             message = {"ReceiverEmail": email,
                        "Name": jsonData["Name"],
@@ -66,6 +77,7 @@ def receive(jsonData):
             sendEmail(message)
     for sensor in sensorFile:
         if sensor["name"] == jsonData["SensorType"]:
+            # se il sensore ha valori fuori dal normale, ma non totalmente anomali, invia email se ne ho ricevuti almeno 4 negli ultimi 2 minuti
             if sensor["minWarningValue"] <= jsonData["Value"] < sensor["minNormalValue"] or \
                     sensor["maxNormalValue"] < jsonData["Value"] <= sensor["maxWarningValue"]:
 
@@ -85,7 +97,7 @@ def receive(jsonData):
                 res = writeOnDb(message)
                 if res[1] > 3:
                     sendEmail(message)
-
+            # se il sensori ha valori completamente anomali, invia email + ambulanza se ne ho ricevuti almeno 4 negli ultimi 2 minuti
             if sensor["maxWarningValue"] < jsonData["Value"] or \
                     jsonData["Value"] < sensor["minWarningValue"]:
                 emailRequest = [{"CF": jsonData["CF"]}]
@@ -113,12 +125,8 @@ def receiveData():
     receive(data)
     later = time.time()
     difference = later - now
-    return {"difference" : difference*1000}
+    return {"difference": difference * 1000}
 
 
 if __name__ == "__main__":
-    # sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # sock.connect(('mailsender', 4000))
-    # receive()
-    #healthChecker.config["DEBUG"] = False
     healthChecker.run(host='0.0.0.0', port=5000)

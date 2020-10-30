@@ -64,10 +64,10 @@ def startSim(filename):
     for person in personList:
         connector = MqttClient(person["CodiceFiscale"])
         fogNode = fogList[person["ActualZone"]]
-        # connector._port = fogNode["port"]
         connector.connect("localhost", fogNode["port"])
         mqttConnectorsDict[person["CodiceFiscale"]] = connector
     thread = False
+    #preferibile la modalità senza thread, altrimenti potrebbe bloccarsi la macchina virtuale
     if not thread:
         for sensor in sensors:
             thread = SensorThread(sensor, mqttConnectorsDict, personList)

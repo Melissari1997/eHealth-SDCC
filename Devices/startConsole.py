@@ -3,7 +3,9 @@ import Devices.deviceCreator as deviceCreator
 
 file = 'settings/medium.json'
 
-
+"""
+Starting point per la simulazione
+"""
 def handlesimtype():
     global file
     print()
@@ -12,7 +14,6 @@ def handlesimtype():
     print("1) Small number of people")
     print("2) Medium number of people")
     print("3) High number of people")
-    print("4) Huge dataset")
     simType = ''
     while simType.lower() not in {"1", "2", "3"}:
         simType = input("Please enter 1, 2 or 3: ")

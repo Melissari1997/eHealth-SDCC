@@ -2,7 +2,9 @@ from flask import Flask, request
 import yagmail
 
 mailSender = Flask(__name__)
-
+"""
+Invia l'email
+"""
 
 def sendEmail(infoMessage):
     # infoMessage = json.loads(data)
@@ -20,9 +22,9 @@ def sendEmail(infoMessage):
         if infoMessage["Gravity"] == "high":
             body += "We have called an ambulance"
 
-   # yag = yagmail.SMTP(user='service.ehealth@gmail.com', password="melissaritummolo", host="smtp.gmail.com")
-   # yag.send(to=receiver, subject="Notification", contents=body
-   #          )
+    yag = yagmail.SMTP(user='service.ehealth@gmail.com', password="melissaritummolo", host="smtp.gmail.com")
+    yag.send(to=receiver, subject="Notification", contents=body
+             )
 
 
 @mailSender.route("/sendEmail", methods=["POST"])

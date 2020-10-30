@@ -4,7 +4,9 @@ import paho.mqtt.client as mqtt
 
 from Devices import dataThread
 from Devices.dataThread import getNearestFog
-
+"""
+Client MQTT che invia e riceve dati dal broker
+"""
 
 def on_connect(client, userdata, flags, rc):
     print(client._client_id, "Connected with result: " + mqtt.error_string(rc))
@@ -59,6 +61,8 @@ class MqttClient:
         self.loop()
         print("Client: ", self.id, " sent message for sensor ", sensorName, ": ", data["Value"], ". Message ID: ",
               res[1], ". Result: ", mqtt.error_string(res[0]))
+
+        #cambia fog node se quello attuale si è disconnesso
         if res[0] != 0:
             print("Res: ", res[0])
             self.client.disconnect()

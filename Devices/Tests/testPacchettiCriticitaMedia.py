@@ -1,7 +1,9 @@
 import time
 
 from Devices.mqttClient import MqttClient
-
+"""
+Test per verificare che il sitema di invio email 
+"""
 mediumPacket = {"Name": "Paolo",
                 "Surname": "Melissari",
                 "CF": "RSSLSS97D04H501N",
@@ -27,13 +29,15 @@ normalPacket = {"Name": "Paolo",
 if __name__ == "__main__":
     client = MqttClient("MLSPLA97D04H501U")
     client.connect("localhost", 1883)
+
+    #invio email
     send = 0
     while send < 4:
         client.sendData(mediumPacket, "bloodPressure")
         client.loop()
         time.sleep(1)
         send += 1
-
+    #non invia, perchè già ha inviato
     while send < 3:
         client.sendData(mediumPacket, "bloodPressure")
         client.loop()
@@ -51,7 +55,7 @@ if __name__ == "__main__":
         time.sleep(1)
         send += 1
 
-    #non invia l'email
+    #non invia l'email se non sono passati almeno 15 minuti
     while send < 4:
         client.sendData(mediumPacket, "bloodPressure")
         client.loop()

@@ -5,16 +5,10 @@
     "Longitude": 12453589 ,
     "port": 1883
   },
-    {
+  {
     "FogId": 1,
-    "Latitude": 41926169 ,
+    "Latitude": 41926169,
     "Longitude": 12545739,
     "port": 1884
-  },
-     {
-    "FogId": 2,
-    "Latitude": 41922169 ,
-    "Longitude": 12645739,
-    "port": 1885
   }
 ]

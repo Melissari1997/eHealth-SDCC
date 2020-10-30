@@ -87,8 +87,6 @@ class SensorThread(Thread):
         self.interval = sensor["interval"]
         self.connectorsList = mqttConnectorsList
         probabilities = getProbability()
-        mediumProb = probabilities["MediumProbability"]
-        criticalProb = probabilities["CriticalProbability"]
         self.changeZoneProb = probabilities["ChangeZoneProbability"]
 
     def setPersons(self, persons):
@@ -162,7 +160,7 @@ class SensorThread(Thread):
             for person in self.persons:
                 for sensor in person["Sensors"]:
                     if sensor["SensorType"] == self.name:
-                        value = randint(40, 175)
+                        value = randint(50, 170)
                         data = {"Name": person["Name"],
                                 "Surname": person["Surname"],
                                 "CF": person["CodiceFiscale"],
@@ -197,7 +195,7 @@ class SensorThread(Thread):
                                 "Surname": person["Surname"],
                                 "CF": person["CodiceFiscale"],
                                 "SensorType": self.name,
-                                "Value": randint(30, 120),
+                                "Value": randint(50, 115),
                                 "Position": getActualPosition(person)}
                         self.connectorsList[person["CodiceFiscale"]].sendData(data, self.name)
             time.sleep(self.interval)

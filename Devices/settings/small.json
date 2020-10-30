@@ -1,0 +1,249 @@
+[
+  {
+    "Id": 0,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Roma",
+    "Sex": "M",
+    "BirthDate": "04/04/1997",
+    "CodiceFiscale": "RSSLSS97D04H501N",
+    "Sensors": [
+      {
+        "SensorType": "bloodOxygen"
+      },
+      {
+        "SensorType": "movement"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41929488,
+          "Long": 12453589
+        }
+      }
+    ],
+    "ActualZone": 0
+  },
+  {
+    "Id": 1,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Roma",
+    "Sex": "M",
+    "BirthDate": "01/01/2000",
+    "CodiceFiscale": "RSSLSS00A01H501X",
+    "Sensors": [
+      {
+        "SensorType": "heartbeat"
+      },
+      {
+        "SensorType": "bloodPressure"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41929488,
+          "Long": 12453589
+        }
+      }
+    ],
+    "ActualZone": 0
+  },
+  {
+    "Id": 2,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Roma",
+    "Sex": "M",
+    "BirthDate": "25/12/2010",
+    "CodiceFiscale": "RSSLSS10T25H501Y",
+    "Sensors": [
+      {
+        "SensorType": "heartbeat"
+      },
+      {
+        "SensorType": "bloodPressure"
+      },
+      {
+        "SensorType": "bloodOxygen"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41929488,
+          "Long": 12453589
+        }
+      }
+    ],
+    "ActualZone": 0
+  },
+  {
+    "Id": 3,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Roma",
+    "Sex": "M",
+    "BirthDate": "09/05/1992",
+    "CodiceFiscale": "RSSLSS92E09H501W",
+    "Sensors": [
+      {
+        "SensorType": "movement"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41926169,
+          "Long": 12545739
+        }
+      }
+    ],
+    "ActualZone": 1
+  },
+  {
+    "Id": 4,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Milano",
+    "Sex": "M",
+    "BirthDate": "04/04/1997",
+    "CodiceFiscale": "RSSLSS97D04F205Q",
+    "Sensors": [
+      {
+        "SensorType": "bloodOxygen"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41929488,
+          "Long": 12453589
+        }
+      }
+    ],
+    "ActualZone": 0
+  },
+  {
+    "Id": 5,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Milano",
+    "Sex": "M",
+    "BirthDate": "01/01/2000",
+    "CodiceFiscale": "RSSLSS00A01F205A",
+    "Sensors": [
+      {
+        "SensorType": "heartbeat"
+      },
+      {
+        "SensorType": "bloodPressure"
+      },
+      {
+        "SensorType": "movement"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41926169,
+          "Long": 12545739
+        }
+      }
+    ],
+    "ActualZone": 1
+  },
+  {
+    "Id": 6,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Milano",
+    "Sex": "M",
+    "BirthDate": "25/12/2010",
+    "CodiceFiscale": "RSSLSS10T25F205B",
+    "Sensors": [
+      {
+        "SensorType": "bloodOxygen"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41929488,
+          "Long": 12453589
+        }
+      }
+    ],
+    "ActualZone": 0
+  },
+  {
+    "Id": 7,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Milano",
+    "Sex": "M",
+    "BirthDate": "09/05/1992",
+    "CodiceFiscale": "RSSLSS92E09F205Z",
+    "Sensors": [
+      {
+        "SensorType": "movement"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41926169,
+          "Long": 12545739
+        }
+      }
+    ],
+    "ActualZone": 1
+  },
+  {
+    "Id": 8,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Napoli",
+    "Sex": "M",
+    "BirthDate": "04/04/1997",
+    "CodiceFiscale": "RSSLSS97D04F839P",
+    "Sensors": [
+      {
+        "SensorType": "bloodOxygen"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41926169,
+          "Long": 12545739
+        }
+      }
+    ],
+    "ActualZone": 1
+  },
+  {
+    "Id": 9,
+    "Name": "Alessio",
+    "Surname": "Rossi",
+    "BirthPlace": "Napoli",
+    "Sex": "M",
+    "BirthDate": "01/01/2000",
+    "CodiceFiscale": "RSSLSS00A01F839Z",
+    "Sensors": [
+      {
+        "SensorType": "heartbeat"
+      },
+      {
+        "SensorType": "bloodPressure"
+      },
+      {
+        "SensorType": "bloodOxygen"
+      },
+      {
+        "SensorType": "movement"
+      },
+      {
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41926169,
+          "Long": 12545739
+        }
+      }
+    ],
+    "ActualZone": 1
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "heartbeat",
+    "interval": 15
+  },
+  {
+    "name": "bloodPressure",
+    "interval": 20
+  },
+  {
+    "name": "bloodOxygen",
+    "interval": 25
+  },
+  {
+    "name": "movement",
+    "interval": 30
+  },
+    {
+    "name": "position",
+    "interval": 60
+  }
+]

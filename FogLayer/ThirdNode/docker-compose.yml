@@ -1,0 +1,61 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7.5
+    environment:
+        MYSQL_ROOT_PASSWORD: password
+    expose:
+      - "3306"
+
+  broker:
+    image: eclipse-mosquitto
+    hostname: "broker"
+    ports:
+      - "1885:1883"
+
+  subscriber:
+      image: mqttsubscriber:1.0
+      expose:
+        - "8080"
+      links:
+      - broker
+      - healthchecker
+      depends_on:
+        - broker
+      restart: always
+
+
+  dbcreator:
+    image: dbcreator:1.0
+    depends_on:
+        - mysql
+
+  mailsender:
+      image: mailsender:1.0
+      expose:
+        - "4000"
+  dbconnector:
+      image: dbconnector:1.0
+      expose:
+         - "7000"
+      links:
+      - mysql
+      depends_on:
+      - mysql
+
+  cloudconnector:
+      image: cloudconnector:1.0
+      expose:
+        - "6000"
+
+  healthchecker:
+      image: healthchecker:1.0
+      expose:
+        - "5000"
+      links:
+      - mailsender
+      - cloudconnector
+      - dbconnector
+
+
+

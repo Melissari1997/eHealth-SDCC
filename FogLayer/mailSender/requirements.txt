@@ -1,0 +1,3 @@
+Flask==1.1.2
+yagmail
+gunicorn == 20.0.4

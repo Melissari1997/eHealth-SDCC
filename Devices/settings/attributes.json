@@ -1,0 +1,134 @@
+[
+  {
+    "Name": "Paolo",
+    "Sex": "M",
+    "BirthDate": "04/04/1997",
+    "BirthPlace": "Roma",
+    "Surname": "Melissari",
+    "Sensors": [
+      {
+        "SensorId": 1,
+        "SensorType": "bloodPressure"
+      },
+      {
+        "SensorId": 2,
+        "SensorType": "heartbeat"
+      },
+      {
+        "SensorId": 3,
+        "SensorType": "bloodGlucose"
+      },
+      {
+        "SensorId": 4,
+        "SensorType": "movement"
+      },
+      {
+        "SensorId": 5,
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41867838,
+          "Long": 12585241
+        }
+      }
+    ],
+    "CodiceFiscale": "MLSPLA97D04H501U"
+  },
+  {
+    "Name": "Gabriele",
+    "Surname": "Tummolo",
+    "Sex": "M",
+    "BirthDate": "15/06/1997",
+    "BirthPlace": "Roma",
+    "Sensors": [
+      {
+        "SensorId": 1,
+        "SensorType": "bloodPressure"
+      },
+      {
+        "SensorId": 2,
+        "SensorType": "heartbeat"
+      },
+      {
+        "SensorId": 3,
+        "SensorType": "bloodGlucose"
+      },
+      {
+        "SensorId": 4,
+        "SensorType": "movement"
+      },
+      {
+        "SensorId": 5,
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41867838,
+          "Long": 12585241
+        }
+      }
+    ],
+    "CodiceFiscale": "TMMGRL97H15H501S"
+  },
+  {
+    "Name": "Mario",
+    "Surname": "Rossi",
+    "Sex": "M",
+    "BirthDate": "12/12/2012",
+    "BirthPlace": "Milano",
+    "Sensors": [
+      {
+        "SensorId": 1,
+        "SensorType": "bloodPressure"
+      },
+      {
+        "SensorId": 2,
+        "SensorType": "heartbeat"
+      },
+      {
+        "SensorId": 3,
+        "SensorType": "bloodGlucose"
+      },
+      {
+        "SensorId": 4,
+        "SensorType": "movement"
+      },
+      {
+        "SensorId": 5,
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41867838,
+          "Long": 12585241
+        }
+      }
+    ],
+    "CodiceFiscale": "RSSMRA12T12F205Z"
+  },
+  {
+    "Name": "Maria",
+    "Surname": "Verdi",
+    "Sex": "F",
+    "BirthDate": "12/12/2012",
+    "BirthPlace": "Modena",
+    "Sensors": [
+      {
+        "SensorId": 1,
+        "SensorType": "bloodPressure"
+      },
+      {
+        "SensorId": 2,
+        "SensorType": "heartbeat"
+      },
+      {
+        "SensorId": 4,
+        "SensorType": "movement"
+      },
+      {
+        "SensorId": 5,
+        "SensorType": "position",
+        "ActualPosition": {
+          "Lat": 41867838,
+          "Long": 12585241
+        }
+      }
+    ],
+    "CodiceFiscale": "VRDMRA12T52F257I"
+  }
+]

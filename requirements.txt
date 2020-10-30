@@ -1,0 +1,8 @@
+Flask==1.1.2
+boto3~=1.14.55
+
+requests~=2.24.0
+paho-mqtt~=1.5.1
+ssdpy~=0.3.0
+yagmail~=0.14.245
+mysql-connector-python~=8.0.22

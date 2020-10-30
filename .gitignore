@@ -1,9 +1,0 @@
-venv
-.idea
-docker-credential-secretservice
-docker-credential-secretservice-v0.6.3-amd64.tar.gz
-docker-credential-secretservice-v0.6.3-amd64.tar.gz.1
-ec2 retriever.py
-testrequest.py
-publicIp.py
-**/__pychache__

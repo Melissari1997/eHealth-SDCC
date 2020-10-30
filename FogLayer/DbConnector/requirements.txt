@@ -1,5 +1,0 @@
-Flask==1.1.2
-Flask-API==2.0
-mysql-connector==2.2.9
-requests
-gunicorn == 20.0.4

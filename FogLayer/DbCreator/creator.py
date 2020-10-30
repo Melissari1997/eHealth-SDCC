@@ -43,7 +43,7 @@ def create():
         #  "DELETE FROM pending WHERE TIMESTAMPDIFF(MINUTE,sendDate, NOW()) > 1 ; " \
         cursor.execute(
             "CREATE TABLE IF NOT EXISTS pending (CF VARCHAR(100), patientName VARCHAR(100), patientSurname VARCHAR(100), sensorType VARCHAR(100), gravity VARCHAR(100), sendDate TIMESTAMP , PRIMARY KEY (CF,sendDate,sensorType))")
-        cursor.execute("CREATE INDEX timestampidx ON pending(sendDate)")
+
         """
                deletePendingTable = "CREATE EVENT IF NOT EXISTS deletePendingPatient " \
                 "ON SCHEDULE EVERY 24 HOUR  " \

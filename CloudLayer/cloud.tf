@@ -197,8 +197,8 @@ resource "aws_dynamodb_table_item" "item" {
     item11 = {
         id = 11,
         nome ="POLICLINICO TOR VERGATA"
-        lat ="41.9203789"
-        long ="12.5379549"
+        lat ="41.8583357"
+        long ="12.6288834"
         numa = 10
     }
   }
@@ -288,13 +288,13 @@ resource "aws_elastic_beanstalk_environment" "environment" {
   setting{
       namespace = "aws:autoscaling:trigger"
       name = "LowerThreshold"
-      value = 100
+      value = 50
   }
 
   setting{
       namespace = "aws:autoscaling:trigger"
       name = "UpperThreshold"
-      value = 300
+      value = 100
   }
 
   setting{

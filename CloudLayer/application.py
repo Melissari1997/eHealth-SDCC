@@ -2,7 +2,7 @@ import pytz
 from datetime import datetime
 import boto3
 from flask import Flask, render_template, request
-from Cloud import GoogleL, ConnectionDB
+from Cloud import FoundHospital, ConnectionDB
 import time
 import threading
 
@@ -123,7 +123,7 @@ def get_HTTPRequest():
             print(ConnectionDB.put_patient(arrival_patient_table, paz['Name'], paz['Surname'], str(paz['Position']['Lat']),
                                            str(paz['Position']['Long']), paz['CF'], index))
             index += 1
-            GoogleL.startapp(hospital_table, arrival_patient_table, exit_patient_table, sem, time1, time_table)
+            FoundHospital.startapp(hospital_table, arrival_patient_table, exit_patient_table, sem, time1, time_table)
     return "Request Send"
 
 

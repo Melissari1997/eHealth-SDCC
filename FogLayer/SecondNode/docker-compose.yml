@@ -6,12 +6,14 @@ services:
         MYSQL_ROOT_PASSWORD: password
     expose:
       - "3306"
+    restart: always
 
   broker:
     image: eclipse-mosquitto
     hostname: "broker"
     ports:
       - "1884:1883"
+    restart: always
 
   subscriber:
       image: mqttsubscriber:1.0
@@ -29,11 +31,13 @@ services:
     image: dbcreator:1.0
     depends_on:
         - mysql
+    restart: always
 
   mailsender:
       image: mailsender:1.0
       expose:
         - "4000"
+      restart: always
   dbconnector:
       image: dbconnector:1.0
       expose:
@@ -42,11 +46,13 @@ services:
       - mysql
       depends_on:
       - mysql
+      restart: always
 
   cloudconnector:
       image: cloudconnector:1.0
       expose:
         - "6000"
+      restart: always
 
   healthchecker:
       image: healthchecker:1.0
@@ -56,6 +62,7 @@ services:
       - mailsender
       - cloudconnector
       - dbconnector
+      restart: always
 
 
 

@@ -1,0 +1,12 @@
+*******************************************************************************
+NB: Nelle impostazioni di sicurezza, associare al ruolo aws-elasticbeanstalk-ec2-role DynamoDbFullAccess
+*******************************************************************************
+
+1)Modificare i file e inserire le credenziali AWS ( key.txt e secretkey.txt )
+Per creare l'architettura del Cloud andare nella cartella CloudLayer aprire un terminale e avviare il comando ./createCloud
+questo avvia la procedura di creazione dell'ambiente Elastic Beanstalk, la creazione della tabelle e il loro popolamento.
+Per eliminare tutto l'ambiente Cloud digitare il comando ./destroyaws ( sempre nella stessa cartella )
+
+
+
+2) Per avviare i nodi fog, eseguire il file Fog_start.sh dentro la cartella FirstNode e SecondNode

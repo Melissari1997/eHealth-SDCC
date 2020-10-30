@@ -1,0 +1,48 @@
+#!/bin/bash
+
+cd ..
+
+cd CloudConnector
+
+sudo docker build --tag cloudconnector:1.0 .
+
+cd ..
+
+cd DbConnector
+
+sudo docker build -- tag dbconnector:1.0 .
+
+cd ..
+
+cd DbCreator
+
+sudo docker build --tag dbcreator:1.0 .
+
+cd ..
+
+cd healthChecker
+
+sudo docker build --tag healtchecker:1.0 .
+
+cd ..
+
+cd mailSender
+
+sudo docker build --tag mailsender:1.0 .
+
+cd ..
+
+cd mqttSubscriber
+
+sudo docker build --tag mqttsubscriber:1.0 .
+
+cd ..
+
+cd FirstNode
+
+sudo docker-compose up
+
+
+
+
+

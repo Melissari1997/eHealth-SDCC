@@ -1,7 +1,7 @@
 *******************************************************************************
 NB: Nelle impostazioni di sicurezza, associare al ruolo aws-elasticbeanstalk-ec2-role DynamoDbFullAccess
 *******************************************************************************
-
+0)Creare un file zip con il contenuto della cartella CloudLayer (senza includere il file cloud.tf) e chiamarlo "Cloud"
 1)Modificare i file e inserire le credenziali AWS ( key.txt e secretkey.txt )
 Per creare l'architettura del Cloud andare nella cartella CloudLayer aprire un terminale e avviare il comando ./createCloud
 questo avvia la procedura di creazione dell'ambiente Elastic Beanstalk, la creazione della tabelle e il loro popolamento.

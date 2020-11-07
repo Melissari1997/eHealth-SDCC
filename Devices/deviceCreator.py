@@ -4,7 +4,6 @@ from random import randint
 from codicefiscale import codicefiscale
 from Devices.dataThread import SensorThread
 from Devices.mqttClient import MqttClient
-from Devices.personThread import PersonThread
 
 mqttConnectorsDict = {}
 
@@ -64,7 +63,7 @@ def startSim(filename):
     for person in personList:
         connector = MqttClient(person["CodiceFiscale"])
         fogNode = fogList[person["ActualZone"]]
-        connector.connect("localhost", fogNode["port"])
+        connector.connect("localhost", fogNode["port"], fogNode["FogId"])
         mqttConnectorsDict[person["CodiceFiscale"]] = connector
     thread = False
     #preferibile la modalità senza thread, altrimenti potrebbe bloccarsi la macchina virtuale

@@ -1,7 +1,7 @@
 [
   {
     "name": "heartbeat",
-    "interval": 15
+    "interval": 20
   },
   {
     "name": "bloodPressure",
@@ -9,14 +9,14 @@
   },
   {
     "name": "bloodOxygen",
-    "interval": 25
+    "interval": 20
   },
   {
     "name": "movement",
-    "interval": 30
+    "interval": 20
   },
     {
     "name": "position",
-    "interval": 60
+    "interval": 10
   }
 ]

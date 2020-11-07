@@ -7,6 +7,8 @@ services:
     expose:
       - "3306"
     restart: always
+    volumes:
+      - my-datavolume:/var/lib/mysql
 
   broker:
     image: eclipse-mosquitto
@@ -31,7 +33,6 @@ services:
     image: dbcreator:1.0
     depends_on:
         - mysql
-    restart: always
 
   mailsender:
       image: mailsender:1.0
@@ -64,5 +65,7 @@ services:
       - dbconnector
       restart: always
 
+volumes:
+  my-datavolume:
 
 

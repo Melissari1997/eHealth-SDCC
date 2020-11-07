@@ -28,7 +28,7 @@ normalPacket = {"Name": "Paolo",
 
 if __name__ == "__main__":
     client = MqttClient("MLSPLA97D04H501U")
-    client.connect("localhost", 1883)
+    client.connect("localhost", 1883,0)
 
     #invio email
     send = 0

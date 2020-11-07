@@ -83,7 +83,7 @@ def startSim(filename):
     for person in personList:
         connector = MqttClient(person["CodiceFiscale"])
         fogNode = fogList[person["ActualZone"]]
-        connector.connect("localhost", fogNode["port"])
+        connector.connect("localhost", fogNode["port"],0)
         connector.client.subscribe("/speedTest")
         connector.client.on_message = on_message
         mqttConnectorsDict[person["CodiceFiscale"]] = connector

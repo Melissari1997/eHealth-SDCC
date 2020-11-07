@@ -28,10 +28,12 @@ class MqttClient:
         self.client.on_disconnect = on_disconnect
         self.brokerPort = None
         self.hostname = None
+        self.brokerId = None
 
 
-    def connect(self, hostname, brokerPort):
+    def connect(self, hostname, brokerPort, brokerId):
         self.brokerPort = brokerPort
+        self.brokerId = brokerId
         self.hostname = hostname
         self.client.connect(hostname, port=brokerPort, keepalive=540)  # connect to broker
        # time.sleep(0.2)
@@ -51,7 +53,8 @@ class MqttClient:
             self.client.loop()
         except:
             pass
-
+    def getActualBroker(self):
+        return self.brokerId
     def sendData(self, data, sensorName):
         topic = "pazienti/" + str(sensorName)
         qos = 0
@@ -68,23 +71,27 @@ class MqttClient:
             self.client.disconnect()
             time.sleep(2)
             print("Changing with port ignore = ", self.brokerPort)
-            nextFog = dataThread.getNearestFog(data["Position"]["Lat"],data["Position"]["Long"],self.brokerPort)
-            print(nextFog)
+            nextFog = dataThread.getNearestFog(data["Position"]["Lat"],data["Position"]["Long"],ignorePort=self.brokerPort)
+            print("Next fog: ", nextFog)
             if nextFog is not None:
                 print("Connected: ", self.client.is_connected())
                 changed = False
                 while not changed:
                         time.sleep(3)
                         try:
-                         self.connect(self.hostname, nextFog['port'])
+                         self.connect(self.hostname, nextFog['port'], nextFog["FogId"])
                          changed = True
+
                         except:
-                            print("Retry with previous node")
+                            print("Retry ")
                             time.sleep(1)
-                            try:
+                            """
+                                        try:
                              self.connect(self.hostname, self.brokerPort)
                              changed = True
                             except:
                                 print("Retry")
                                 time.sleep(1)
+                            """
+
 

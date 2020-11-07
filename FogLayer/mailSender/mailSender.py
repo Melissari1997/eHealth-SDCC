@@ -1,10 +1,16 @@
+import time
+from random import random
+
 from flask import Flask, request
 import yagmail
+import random
 
 mailSender = Flask(__name__)
+
 """
 Invia l'email
 """
+
 
 def sendEmail(infoMessage):
     # infoMessage = json.loads(data)

@@ -8,12 +8,12 @@ from threading import Thread
 Thread che genera i dati di ogni sensori di una lista di persone
 """
 
-
 def getPersonList(filename):
     with open(filename) as configFile:
         data = json.load(configFile)
         configFile.close()
         return data
+
 
 
 def getFogList():
@@ -69,9 +69,13 @@ Calcola il nodo fog più vicino
 def getNearestFog(lat, long, ignorePort=None):
     candidateFog = fogList.copy()
     if ignorePort is not None:
-        for i in range(0, len(candidateFog) - 1):
+        for i in range(0, len(candidateFog)):
+            print("Candidate Fog ", i, " : ", candidateFog[i] )
+            print("Port: ", candidateFog[i]["port"])
             if candidateFog[i]["port"] == ignorePort:
                 candidateFog.pop(i)
+                print("popped ", i)
+                break
     return computeDistance(lat, long, candidateFog)
 
 
@@ -131,6 +135,8 @@ class SensorThread(Thread):
                     if sensor["SensorType"] == self.name:
                         changeZone = randint(0, 100)
                         if 0 < changeZone < self.changeZoneProb:
+                            brokerId = self.connectorsList[person["CodiceFiscale"]].getActualBroker()
+                            person["ActualZone"] = brokerId
                             newPos = setNewPosition(person)
                             newCoordinates = newPos[1]
                             broker = newPos[0]
@@ -151,6 +157,8 @@ class SensorThread(Thread):
                                 lat = lat + 100
                                 long = long + 100
                             position = {"Lat": lat, "Long": long}
+                            brokerId = self.connectorsList[person["CodiceFiscale"]].getActualBroker()
+                            person["ActualZone"] = brokerId
                             nearestFog = getNearestFog(lat, long)
                             if nearestFog["FogId"] != person["ActualZone"]:
                                 self.changeBroker(nearestFog, person)
